@@ -33,6 +33,8 @@
 
     // Send form on load
     window.onload = function () {
+        <h2>Sending message1...</h2>
+
       emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
         .then(function () {
                     alert('Email sent.\n');
@@ -41,6 +43,8 @@
           alert('Email failed to send.\n' + JSON.stringify(error));
         });
     };
+      <h2>Sending message3...</h2>
+
   </script>
 </body>
 </html>

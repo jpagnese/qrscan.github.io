@@ -1,51 +1,42 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
+  <meta charset="UTF-8">
   <title>EmailJS Static Email</title>
-  <script src='https://cdn.emailjs.com/dist/email.min.js'></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
-      emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
+     emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
     })();
   </script>
   <style>
-    /* Hide form completely */
     #hidden-form {
       display: none;
     }
   </style>
 </head>
 <body>
-<h2>...</h2>
-  <form id='hidden-form'>
-    <input type='hidden' name='name' value='1213 Cordova Rd'>
-    <input type='hidden' name='message' value='Somebody scanned the QR Code'>
-    <input type='hidden' name='time' id='sent_time'>
+  <h2>Sending message...</h2>
+
+  <form id="hidden-form">
+    <input type="hidden" name="from_name" value="Static User">
+    <input type="hidden" name="message" value="This is a static message sent automatically.">
+    <input type="hidden" name="sent_time" id="sent_time">
   </form>
 
   <script>
-    // Prepare time and populate hidden input
     const now = new Date();
-    const formattedTime = now.toLocaleString(); // Example: '6/23/2025, 2:33:10 PM'
+    const formattedTime = now.toLocaleString();
     document.getElementById('sent_time').value = formattedTime;
 
-    // Send form on load
     window.onload = function () {
-        <h2>Please Wait...</h2>
-
       emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
         .then(function () {
-           window.location.href = 'https://1213-cordova-rd.rechat.site/ ';
+          window.location.href = 'https://www.yahoo.com';
         }, function (error) {
-           window.location.href = 'https://1213-cordova-rd.rechat.site/ ';
-         /* alert('Email failed to send.\n' + JSON.stringify(error));*/
+          alert('Email failed to send.\n' + JSON.stringify(error));
         });
-                  
-         
     };
-     
-
   </script>
 </body>
 </html>

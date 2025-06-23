@@ -29,9 +29,13 @@
   <script>
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      emailjs.sendForm('service_hlkt43g', 'template_g7nwiii', this)
-        .then(function() {
+emailjs.send('service_hlkt43g','template_g7nwiii',{
+  title: 'test',
+name: 'test',
+time: 'test',
+message: 'test',
+email: 'jpagnese@gmail.com',
+}).then(function() {
           alert('Email sent successfully!');
         }, function(error) {
           alert('Failed to send email. Error: ' + JSON.stringify(error));

@@ -12,7 +12,13 @@
   </script>
 </head>
 <body>
- 
+  <h2>Sending message...</h2>
+
+  <form id="hidden-form">
+    <input type="hidden" name="from_name" value="Static User">
+    <input type="hidden" name="message" value="This is a static message sent automatically.">
+    <input type="hidden" name="sent_time" id="sent_time">
+  </form>
   <script>
   const timeString = now.toLocaleString();
      window.onload = function () {

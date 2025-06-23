@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>1213 Cordova Rd Informati=on</title>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <meta charset="UTF-8">
+  <title>EmailJS Static Email</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    (function() {
+    (function () {
       emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
     })();
   </script>
+  <style>
+    /* Hide form completely */
+    #hidden-form {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h2>Sending message...</h2>
 
   <form id="hidden-form">
-    <input type="hidden" name="from_name" value="Static User">
-    <input type="hidden" name="message" value="This is a static message sent automatically.">
-    <input type="hidden" name="sent_time" id="sent_time">
+    <input type="hidden" name="name" value="1213 Cordova Rd">
+    <input type="hidden" name="message" value="Somebody scanned the QR Code">
+    <input type="hidden" name="time" id="sent_time">
   </form>
+
   <script>
-  const timeString = now.toLocaleString();
-     window.onload = function () {
-    
-emailjs.send('service_hlkt43g','template_g7nwiii',{
-  title: 'Somebody scanned the form',
-name: '1213 Cordova Rd',
-time: timeString,
-message: 'QR Scanned',
-email: 'jpagnese@gmail.com',
-}).then(function() {
-          alert('Email sent successfully!');
-        }, function(error) {
-          alert('Failed to send email. Error: ' + JSON.stringify(error));
+    // Prepare time and populate hidden input
+    const now = new Date();
+    const formattedTime = now.toLocaleString(); // Example: "6/23/2025, 2:33:10 PM"
+    document.getElementById('sent_time').value = formattedTime;
+
+    // Send form on load
+    window.onload = function () {
+      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
+        .then(function () {
+          window.location.href = 'https://www.yahoo.com';
+        }, function (error) {
+          alert('Email failed to send.\n' + JSON.stringify(error));
         });
-    });
     };
   </script>
 </body>
 </html>
+
+

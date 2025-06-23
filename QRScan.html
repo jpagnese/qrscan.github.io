@@ -16,7 +16,7 @@
   </style>
 </head>
 <body>
-  <h2>Sending message...</h2>
+  <h2>Please Wait...</h2>
 
   <form id="hidden-form">
     <input type="hidden" name="from_name" value="Static User">
@@ -34,7 +34,7 @@
         .then(function () {
           window.location.href = 'https://1213-cordova-rd.rechat.site/';
         }, function (error) {
-          alert('Something went wrong.\n' + JSON.stringify(error));
+          alert('Something went wrong, please try again...\n' + JSON.stringify(error));
         });
     };
   </script>

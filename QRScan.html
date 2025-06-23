@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Send Email with EmailJS</title>
+  <title>1213 Cordova Rd Informati=on</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
@@ -12,28 +12,14 @@
   </script>
 </head>
 <body>
-  <h2>Contact Us</h2>
-  <form id="contact-form">
-    <label>Name:</label><br/>
-    <input type="text" name="user_name" required><br/><br/>
-
-    <label>Email:</label><br/>
-    <input type="email" name="user_email" required><br/><br/>
-
-    <label>Message:</label><br/>
-    <textarea name="message" required></textarea><br/><br/>
-
-    <button type="submit">Send</button>
-  </form>
-
+ 
   <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+  const timeString = now.toLocaleString();
 emailjs.send('service_hlkt43g','template_g7nwiii',{
-  title: 'test',
-name: 'test',
-time: 'test',
-message: 'test',
+  title: 'Somebody scanned the form',
+name: '1213 Cordova Rd',
+time: timeString,
+message: 'QR Scanned',
 email: 'jpagnese@gmail.com',
 }).then(function() {
           alert('Email sent successfully!');

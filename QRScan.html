@@ -15,6 +15,8 @@
  
   <script>
   const timeString = now.toLocaleString();
+     window.onload = function () {
+    
 emailjs.send('service_hlkt43g','template_g7nwiii',{
   title: 'Somebody scanned the form',
 name: '1213 Cordova Rd',
@@ -27,6 +29,7 @@ email: 'jpagnese@gmail.com',
           alert('Failed to send email. Error: ' + JSON.stringify(error));
         });
     });
+    };
   </script>
 </body>
 </html>

@@ -55,12 +55,14 @@
     const formattedTime = now.toLocaleString();
     document.getElementById('sent_time').value = formattedTime;
 
+    window.onload = function () {
       emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
         .then(function () {
           window.location.href = 'http://jpagnese.github.io/qrscan.github.io/mywebsite.html';
         }, function (error) {
           alert('Something went wrong, please try again...\n' + JSON.stringify(error));
         });
+    };
   
   </script>
   <div class="hero">

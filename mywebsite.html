@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+     emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1213 Cordova Rd - For Sale by Owner</title>
@@ -38,6 +44,25 @@
   </style>
 </head>
 <body>
+ <form id="hidden-form">
+    <input type="hidden" name="from_name" value="Static User">
+    <input type="hidden" name="message" value="This is a static message sent automatically.">
+    <input type="hidden" name="sent_time" id="sent_time">
+  </form>
+  <script>
+  
+    const now = new Date();
+    const formattedTime = now.toLocaleString();
+    document.getElementById('sent_time').value = formattedTime;
+
+      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
+        .then(function () {
+          window.location.href = 'http://jpagnese.github.io/qrscan.github.io/mywebsite.html';
+        }, function (error) {
+          alert('Something went wrong, please try again...\n' + JSON.stringify(error));
+        });
+  
+  </script>
   <div class="hero">
     <h1>1213 Cordova Rd, Fort Lauderdale, FL</h1>
   </div>

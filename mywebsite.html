@@ -1,152 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    (function () {
-     emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
-    })();
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1213 Cordova Rd - For Sale by Owner</title>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () { emailjs.init('cj0n6fbLDl-f4swPB'); })();
+  </script>
+
+  <!-- Styles -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #f8f8f8; color: #333; }
-    header { background: #005f73; color: white; padding: 2rem 1rem; text-align: center; }
-    .hero {
-      background: url('https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/25.jpg') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    :root{
+      --bg:#0b1220;
+      --panel:#101a2e;
+      --muted:#8aa0b6;
+      --text:#eaf1fb;
+      --accent:#3aaed8;
+      --accent2:#50c878;
+      --ring:rgba(58,174,216,.45);
+      --br:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 1rem 2rem;
-      border-radius: 10px;
-    }
-    .content { max-width: 800px; margin: 2rem auto; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 1rem;
-    }
-    .gallery img {
-      height: 250px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1220,#0e1930);color:var(--text);font-family:"Inter",system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(14,25,48,.65);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+    .brand{display:flex;gap:.6rem;align-items:center;font-weight:800;letter-spacing:.3px}
+    .dot{width:.65rem;height:.65rem;border-radius:999px;background:var(--accent2);box-shadow:0 0 0 .25rem rgba(80,200,120,.15)}
+    .navlinks{display:flex;gap:.6rem;flex-wrap:wrap}
+    .pill{padding:.5rem .8rem;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07)}
+    .pill:hover{background:rgba(255,255,255,.08)}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem .95rem;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--text);box-shadow:var(--shadow)}
+    .btn-map{background:linear-gradient(180deg,rgba(58,174,216,.2),rgba(58,174,216,.12))}
+    .hero{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/25.jpg') center/cover no-repeat;filter:brightness(.6)}
+    .hero .inner{position:relative;padding:1.5rem}
+    .hero h1{font-size:clamp(1.8rem,3.2vw,2.6rem);margin:.2rem 0 1rem}
+    .hero .tag{display:inline-block;background:rgba(0,0,0,.45);padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+    .section{padding:2rem 0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--br);box-shadow:var(--shadow);padding:1.2rem}
+    .section h2{font-size:1.35rem;margin:0 0 .6rem}
+    .lead{color:var(--muted);line-height:1.65}
+    .gallery{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.6rem;scroll-snap-type:x mandatory}
+    .gallery::-webkit-scrollbar{height:8px}
+    .gallery::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:999px}
+    .gallery img{height:240px;flex:0 0 auto;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(0,0,0,.25);scroll-snap-align:start}
+    .details{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin:0;padding:0;list-style:none}
+    .details li{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.75rem .9rem}
+    form.contact{display:grid;gap:1rem;margin-top:.6rem}
+    .field{display:grid;gap:.35rem}
+    input, textarea{width:100%;padding:.9rem .95rem;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(10,14,25,.6);color:var(--text)}
+    input:focus, textarea:focus{outline:none;box-shadow:0 0 0 .2rem var(--ring)}
+    .help{font-size:.85rem;color:var(--muted)}
+    .error{color:#ff7b7b;font-size:.9rem}
+    footer{padding:2.2rem 0;color:var(--muted);text-align:center}
+    @media (max-width:900px){ .nav{gap:.8rem} }
   </style>
 </head>
 <body>
- <form id="hidden-form">
+  <form id="hidden-form">
     <input type="hidden" name="from_name" value="Static User">
     <input type="hidden" name="message" value="This is a static message sent automatically.">
     <input type="hidden" name="sent_time" id="sent_time">
   </form>
   <script>
-  
     const now = new Date();
-    const formattedTime = now.toLocaleString();
-    document.getElementById('sent_time').value = formattedTime;
-
-    window.onload = function () {
-      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
-        .then(function () {
-        }, function (error) {
-          alert('Something went wrong, please try again...\n' + JSON.stringify(error));
-        });
-    };
-  
+    document.getElementById('sent_time').value = now.toLocaleString();
+    window.addEventListener('load', function(){
+      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form').catch(function(err){
+        console.warn('EmailJS silent error:', err);
+      });
+    });
   </script>
-  <div class="hero">
-    <h1>1213 Cordova Rd, Fort Lauderdale, FL</h1>
-  </div>
-
-  <header>
-    <p>For Sale by Owner — Call for Price – 954 854 6598</p>
+  <header class="site">
+    <nav class="nav container" aria-label="Primary">
+      <div class="brand"><span class="dot"></span><span>1213 Cordova Rd</span></div>
+      <div class="navlinks">
+        <a class="pill" href="#gallery-1">Indoor</a>
+        <a class="pill" href="#gallery-2">Outdoor</a>
+        <a class="pill" href="#gallery-3">Bedrooms</a>
+        <a class="btn btn-map" href="https://maps.app.goo.gl/49qYEJTtpfmdo6wK8" title="Google Map has OLD photos of the house" target="_blank" rel="noopener">View on Map</a>
+      </div>
+    </nav>
   </header>
-
-  <section class="content">
-  <h2>Words from the Current Owners</h2>
-  <p>We’ve called 1213 Cordova Rd home for many wonderful years, raising our four children in this warm, welcoming space. From first steps to birthday parties to quiet evenings by the fire, every corner of this house holds a memory. It’s a place filled with laughter, love, and the kind of comfort that only comes from truly living in a home.</p>
-  <p>The large, open living areas have been perfect for hosting family gatherings and holidays, while the spacious backyard with the pool and grill became our go-to space for weekly barbecues and summer celebrations. The upstairs suite, with views of the intracoastal and its peaceful balcony, offers perfect accommodations to a visiting couple. </p>
-  <p>One of the things we’ve most enjoyed is the unbeatable location. We’re just a short stroll or bike ride from some of Fort Lauderdale’s best local restaurants, cafés, and shops. We enjoyed grabbing a quick coffee, waterfront dinner, and running errands at the nearby stores. Everything we needed is just blocks away. And of course, the beach, only about a 7-minute drive, is always there for spontaneous weekend outings or peaceful early morning walks along the shore.</p>
-  <p>We've made thoughtful upgrades over the years—impact windows, a smart home system, renovated baths—not just for value, but because we truly cared about the comfort and functionality of our everyday life. The neighborhood, nestled between Harbordale Elementary and the Lauderdale Yacht Club, has offered the safety, walkability, and community every parent hopes for. </p>
-  <p>Now, as we enter the next chapter, we hope the next owners find as much happiness here as we have. This house isn’t just a structure, it’s a story, and we can’t wait to pass the torch to someone who will write the next one.</p>
-</section>
-
-
-  <section class="content">
-    <h2>Indoor Features - L-Shape Open Area with dining, TV, and sitting room</h2>
-    <div class="gallery">
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/25.jpg" alt="Dining Area" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/26.jpg" alt="Living Room" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/27.jpg" alt="Dining Room" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/28.jpg" alt="Tropical Landscaping" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/29.jpg" alt="Tropical Landscaping" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/30.jpg" alt="Poolside" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/31.jpg" alt="Poolside" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/36.jpg" alt="Poolside" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/40.jpg" alt="Poolside" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/41.jpg" alt="Poolside" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/42.jpg" alt="Poolside" />
+  <section class="hero">
+    <div class="inner container">
+      <span class="tag">For Sale by Owner — Call for Price – 954 854 6598</span>
+      <h1>1213 Cordova Rd, Fort Lauderdale, FL</h1>
     </div>
   </section>
-
-  <section class="content">
-    <h2>Outdoor Living - Pool, Argentine-style Grill, Covered Dining, and Shaded Sitting Areas</h2>
-    <div class="gallery">
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/44.jpg" alt="Sitting Area" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/45.jpg" alt="Outdoor View 1" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/46.jpg" alt="Outdoor View 2" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/47.jpg" alt="Outdoor View 3" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/48.jpg" alt="Outdoor View 4" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/49.jpg" alt="Outdoor View 5" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/52.jpg" alt="Outdoor View 6" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/53.jpg" alt="Outdoor View 7" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/57.jpg" alt="Outdoor View 8" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/44.jpg" alt="Sitting Area" />
+  <section class="section">
+    <div class="container card">
+      <h2>Words from the Current Owners</h2>
+      <p class="lead">We’ve called 1213 Cordova Rd home for many wonderful years, raising our four children in this warm, welcoming space. From first steps to birthday parties to quiet evenings by the fire, every corner of this house holds a memory. It’s a place filled with laughter, love, and the kind of comfort that only comes from truly living in a home.</p>
+      <p class="lead">The large, open living areas have been perfect for hosting family gatherings and holidays, while the spacious backyard with the pool and grill became our go-to space for weekly barbecues and summer celebrations. The upstairs suite, with views of the intracoastal and its peaceful balcony, offers perfect accommodations to a visiting couple.</p>
+      <p class="lead">One of the things we’ve most enjoyed is the unbeatable location. We’re just a short stroll or bike ride from some of Fort Lauderdale’s best local restaurants, cafés, and shops. Everything we needed is just blocks away. And of course, the beach, only about a 7-minute drive, is always there for spontaneous weekend outings or peaceful early morning walks along the shore.</p>
+      <p class="lead">We've made thoughtful upgrades over the years—impact windows, a smart home system, renovated baths—not just for value, but because we truly cared about the comfort and functionality of our everyday life. The neighborhood, nestled between Harbordale Elementary and the Lauderdale Yacht Club, has offered the safety, walkability, and community every parent hopes for.</p>
+      <p class="lead">Now, as we enter the next chapter, we hope the next owners find as much happiness here as we have. This house isn’t just a structure, it’s a story, and we can’t wait to pass the torch to someone who will write the next one.</p>
     </div>
   </section>
-
-  <section class="content">
-    <h2>Bedrooms and Bathrooms - Primary with Bathroom and Walk-In Closet, 2 Bedrooms with Private Bathrooms, 1 Guest Bathroom, 1 Guest Room</h2>
-    <div class="gallery">
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/10.jpg" alt="Primary Bedroom View" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/11.jpg" alt="Primary Bedroom View" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/12.jpg" alt="Primary Bedroom Desk Area" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/14.jpg" alt="Primary Bathroom Vanity" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/15.jpg" alt="Primary Bathroom Tub" />
-      <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/7.jpg" alt="Upstairs Bedroom with Balcony" />
+  <section id="gallery-1" class="section">
+    <div class="container card">
+      <h2>Indoor Features — L-Shape Open Area with Dining, TV, and Sitting Room</h2>
+      <div class="gallery">
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/25.jpg" alt="Dining Area" />
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/26.jpg" alt="Living Room" />
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/27.jpg" alt="Dining Room" />
+      </div>
     </div>
   </section>
-
-  <section class="content">
-  <h2>Home Details</h2>
-    <li>🛏️ <strong>Bedrooms:</strong> 4</li>
-    <li>🛁 <strong>Bathrooms:</strong> 4½</li>
-    <li>📐 <strong>Living Area:</strong> 2,321 sq ft</li>
-    <li>🌳 <strong>Lot Size:</strong> 7,000 sq ft</li>
-    <li>🏠 <strong>Construction:</strong> Stucco over concrete block</li>
-    <li>🧱 <strong>Roof:</strong> Tile</li>
-    <li>🏡 <strong>Property Type:</strong> Single Family Residence</li>
-    <li>📍 <strong>Parcel Number:</strong> 504214090120</li>
-    <li>💵 <strong>2024 Taxes:</strong> $7,552</li>
-    <li>❄️ <strong>AC Unit:</strong> Installed in 2015, updated with new compressor and air handlers between 2022–2024</li>
-    <li>📱 <strong>Smart Home:</strong> NEST thermostat, Ring doorbell, Smart Switches, Smart Hub Refrigerator, and Smart Stove</li>
-    <li>🚪 <strong>Storage:</strong> In lieu of a garage, the property has a set of storage sheds on the side entrance of the property</li>
-  </ul>
+  <section id="gallery-2" class="section">
+    <div class="container card">
+      <h2>Outdoor Living — Pool, Argentine-style Grill, Covered Dining, and Shaded Sitting Areas</h2>
+      <div class="gallery">
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/44.jpg" alt="Sitting Area" />
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/45.jpg" alt="Outdoor View 1" />
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/46.jpg" alt="Outdoor View 2" />
+      </div>
+    </div>
   </section>
-<section class="content">
-  <h2>Contact</h2>
-  <p>If you are interested in this property or have any questions, feel free to email us directly:</p>
-  <p><a href="mailto:jpagnese+1213@gmail.com">📧 jpagnese+1213@gmail.com</a></p>
-</section>
+  <section id="gallery-3" class="section">
+    <div class="container card">
+      <h2>Bedrooms and Bathrooms — Primary with Bath & Walk-In, Two Bedrooms with Private Baths, One Guest Bath, One Guest Room</h2>
+      <div class="gallery">
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/10.jpg" alt="Primary Bedroom View" />
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/11.jpg" alt="Primary Bedroom View" />
+        <img src="https://raw.githubusercontent.com/jpagnese/qrscan.github.io/refs/heads/main/images/12.jpg" alt="Primary Bedroom Desk Area" />
+      </div>
+    </div>
+  </section>
+  <section class="section" id="contact">
+    <div class="container card">
+      <h2>Contact</h2>
+      <p class="lead">Have a question or want to schedule a showing? Use the form below or email us: <a href="mailto:jpagnese+1213@gmail.com">jpagnese+1213@gmail.com</a></p>
+      <form id="contact-form" class="contact" onsubmit="return validateContact()" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="from_name" type="text" autocomplete="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="reply_to" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(xxx) xxx-xxxx">
+          <div class="help">Provide at least one: email or phone.</div>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us a bit about your interest" required></textarea>
+        </div>
+        <div id="contact-error" class="error" role="alert" aria-live="polite" style="display:none"></div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button type="submit" class="btn btn-map" title="Google Map has OLD photos of the house">Send Message</button>
+          <a class="btn" href="https://maps.app.goo.gl/49qYEJTtpfmdo6wK8" title="Google Map has OLD photos of the house" target="_blank" rel="noopener">View on Map</a>
+        </div>
+      </form>
+      <script>
+        function validateContact(){
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const err = document.getElementById('contact-error');
+          if(!email && !phone){
+            err.textContent = 'Please provide either an email or a phone number.';
+            err.style.display = 'block';
+            return false;
+          }
+          err.style.display = 'none';
+          emailjs.send('service_hlkt43g','template_g7nwiii', {
+            from_name: document.getElementById('name').value,
+            reply_to: email,
+            phone: phone,
+            message: document.getElementById('message').value
+          }).then(function(){
+            alert('Thanks! Your message has been sent.');
+            document.getElementById('contact-form').reset();
+          }).catch(function(error){
+            alert('There was an issue sending your message. Please try again or email us directly.');
+            console.error(error);
+          });
+          return false;
+        }
+      </script>
+    </div>
+  </section>
+  <footer>
+    <div class="container">© <span id="year"></span> 1213 Cordova Rd • Fort Lauderdale, FL</div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

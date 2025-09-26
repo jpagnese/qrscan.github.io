@@ -186,7 +186,6 @@
             document.getElementById('contact-form').reset();
           }).catch(function(error){
             alert('There was an issue sending your message. Please try again, email us, or call us at 954 590 0378');
-            alert('Contact form error: ' + JSON.stringify(error));
             console.error(error.);
           });
           return false;

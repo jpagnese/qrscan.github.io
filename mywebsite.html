@@ -144,7 +144,7 @@
       <form id="contact-form" class="contact" onsubmit="return validateContact()" novalidate>
         <div class="field">
           <label for="name">Name</label>
-          <input id="name" name="from_name" type="text" autocomplete="name" placeholder="Your name" required>
+          <input id="from_name" name="from_name" type="text" autocomplete="name" placeholder="Your name" required>
         </div>
         <div class="field">
           <label for="email">Email</label>
@@ -177,7 +177,7 @@
           }
           err.style.display = 'none';
           emailjs.send('service_hlkt43g','template_mdh3rlq', {
-            from_name: document.getElementById('name').value,
+            from_name: document.getElementById('from_name').value,
             reply_to: email,
             phone: phone,
             message: document.getElementById('message').value

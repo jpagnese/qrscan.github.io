@@ -171,7 +171,7 @@
           const email = document.getElementById('email').value.trim();
           const phone = document.getElementById('phone').value.trim();
           const err = document.getElementById('contact-error');
-          const message = document.getElementById('message').value.trim();
+          const message1 = document.getElementById('message').value.trim();
           if(!email && !phone){
             err.textContent = 'Please provide either an email or a phone number.';
             err.style.display = 'block';
@@ -182,12 +182,12 @@
             from_name: fname,
             reply_to: email,
             phone: phone,
-            message: message;
+            message: message1
           }).then(function(){
             alert('Thanks! Your message has been sent.');
             document.getElementById('contact-form').reset();
           }).catch(function(error){
-            alert('There was an issue sending your message. Please try again or email us directly....');
+            alert('There was an issue sending your message. Please try again or email us directly.');
             console.error(error);
           });
           return false;

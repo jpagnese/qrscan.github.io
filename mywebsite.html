@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1213 Cordova Rd - For Sale by Owner</title>
 
-  <!-- EmailJS -->
+  <!-- EmailJS v4 (supported) -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // v4 init uses an object with publicKey
+    emailjs.init({ publicKey: 'cj0n6fbLDl-f4swPB' });
+  </script>
 
-<script>
-  emailjs.init({ publicKey: 'cj0n6fbLDl-f4swPB' }); // v4 expects an object
-</script>
   <!-- Styles -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -66,20 +67,8 @@
   </style>
 </head>
 <body>
-  <form id="hidden-form">
-    <input type="hidden" name="from_name" value="Static User">
-    <input type="hidden" name="message" value="This is a static message sent automatically.">
-    <input type="hidden" name="sent_time" id="sent_time">
-  </form>
-  <script>
-    const now = new Date();
-    document.getElementById('sent_time').value = now.toLocaleString();
-    window.addEventListener('load', function(){
-      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form').catch(function(err){
-        console.warn('EmailJS silent error:', err);
-      });
-    });
-  </script>  
+  <!-- REMOVED: hidden auto-send form & onload send that triggers blockers (418) -->
+
   <header class="site">
     <nav class="nav container" aria-label="Primary">
       <div class="brand"><span class="dot"></span><span>1213 Cordova Rd</span></div>
@@ -91,12 +80,14 @@
       </div>
     </nav>
   </header>
+
   <section class="hero">
     <div class="inner container">
       <span class="tag">For Sale by Owner — Call for Price – 954 590 0378</span>
       <h1>1213 Cordova Rd, Fort Lauderdale, FL</h1>
     </div>
   </section>
+
   <section class="section">
     <div class="container card">
       <h2>Words from the Current Owners</h2>
@@ -107,6 +98,7 @@
       <p class="lead">Now, as we enter the next chapter, we hope the next owners find as much happiness here as we have. This house isn’t just a structure, it’s a story, and we can’t wait to pass the torch to someone who will write the next one.</p>
     </div>
   </section>
+
   <section id="gallery-1" class="section">
     <div class="container card">
       <h2>Indoor Features — L-Shape Open Area with Dining, TV, and Sitting Room</h2>
@@ -117,6 +109,7 @@
       </div>
     </div>
   </section>
+
   <section id="gallery-2" class="section">
     <div class="container card">
       <h2>Outdoor Living — Pool, Argentine-style Grill, Covered Dining, and Shaded Sitting Areas</h2>
@@ -127,6 +120,7 @@
       </div>
     </div>
   </section>
+
   <section id="gallery-3" class="section">
     <div class="container card">
       <h2>Bedrooms and Bathrooms — Primary with Bath & Walk-In, Two Bedrooms with Private Baths, One Guest Bath, One Guest Room</h2>
@@ -137,14 +131,16 @@
       </div>
     </div>
   </section>
-<section class="section" id="contact">
+
+  <section class="section" id="contact">
     <div class="container card">
       <h2>Contact</h2>
-      <p class="lead">Have a question or want to schedule a showing? Use the form below or email us: <a href="mailto:jpagnese+1213@gmail.com">jpagnese+1213@gmail.com</a></p>
+      <p class="lead">Have a question or want to schedule a showing? Please, use the form below or email us: <a href="mailto:jpagnese+1213@gmail.com">jpagnese+1213@gmail.com</a></p>
+
       <form id="contact-form" class="contact" onsubmit="return validateContact()" novalidate>
         <div class="field">
           <label for="name">Name</label>
-          <input id="from_name" name="from_name" type="text" autocomplete="name" placeholder="Your name" required>
+          <input id="name" name="from_name" type="text" autocomplete="name" placeholder="Your name" required>
         </div>
         <div class="field">
           <label for="email">Email</label>
@@ -165,36 +161,62 @@
           <a class="btn" href="https://maps.app.goo.gl/49qYEJTtpfmdo6wK8" title="Google Map has OLD photos of the house" target="_blank" rel="noopener">View on Map</a>
         </div>
       </form>
+
       <script>
         function validateContact(){
-          const fname = document.getElementById('from_name').value.trim();
+          // Basic validation: need either email or phone
           const email = document.getElementById('email').value.trim();
           const phone = document.getElementById('phone').value.trim();
-          const err = document.getElementById('contact-error');
-          const message1 = document.getElementById('message').value.trim();
+          const err   = document.getElementById('contact-error');
+
           if(!email && !phone){
             err.textContent = 'Please provide either an email or a phone number.';
             err.style.display = 'block';
-            return false;
+            return false; // stop native submit
           }
           err.style.display = 'none';
-          emailjs.send('service_hlkt43g','template_mdh3rlq', {
-            from_name: fname,
-            reply_to: email,
-            phone: phone,
-            message: message1
-          }).then(function(){
+
+          // Safety: ensure SDK present
+          if (!window.emailjs || !emailjs.send) {
+            console.error('EmailJS SDK not available.');
+            alert('Sending is temporarily unavailable. Please email us or call 954 590 0378.');
+            return false;
+          }
+
+          // Send using v4 API (no public key as 4th arg)
+          emailjs.send(
+            'service_hlkt43g',
+            'template_mdh3rlq',
+            {
+              from_name: document.getElementById('name').value,
+              reply_to:  email || undefined,
+              phone:     phone || undefined,
+              message:   document.getElementById('message').value
+            }
+          )
+          .then(function(){
             alert('Thanks! Your message has been sent.');
             document.getElementById('contact-form').reset();
-          }).catch(function(error){
-            alert('There was an issue sending your message. Please try again or email us directly.');
-            console.error(error);
+          })
+          .catch(function(error){
+            // Better diagnostics, including common blocker/418 hints
+            const status = error && error.status;
+            const text   = (error && error.text) || '';
+            console.error('EmailJS send error:', status, text, error);
+
+            if (status === 418 || /teapot|blocked|adguard|ublock|shield|denied/i.test(text)) {
+              alert('Your browser or network is blocking the request (ad-blocker/WAF). Please disable it for this site or try another browser/network.');
+            } else {
+              alert('There was an issue sending your message. Please try again, email us, or call us at 954 590 0378.');
+            }
           });
-          return false;
+
+          return false; // prevent default submit + reload
         }
       </script>
     </div>
   </section>
+
   <footer>
     <div class="container">© <span id="year"></span> 1213 Cordova Rd • Fort Lauderdale, FL</div>
   </footer>

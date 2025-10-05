@@ -7,10 +7,10 @@
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    (function () { emailjs.init('cj0n6fbLDl-f4swPB'); })();
-  </script>
 
+<script>
+  emailjs.init({ publicKey: 'cj0n6fbLDl-f4swPB' }); // v4 expects an object
+</script>
   <!-- Styles -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">

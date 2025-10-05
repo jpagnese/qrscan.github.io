@@ -137,10 +137,10 @@
       </div>
     </div>
   </section>
-  <section class="section" id="contact">
+<section class="section" id="contact">
     <div class="container card">
       <h2>Contact</h2>
-      <p class="lead">Have a question or want to schedule a showing? Please, use the form below or email us: <a href="mailto:jpagnese+1213@gmail.com">jpagnese+1213@gmail.com</a></p>
+      <p class="lead">Have a question or want to schedule a showing? Use the form below or email us: <a href="mailto:jpagnese+1213@gmail.com">jpagnese+1213@gmail.com</a></p>
       <form id="contact-form" class="contact" onsubmit="return validateContact()" novalidate>
         <div class="field">
           <label for="name">Name</label>
@@ -176,16 +176,16 @@
             return false;
           }
           err.style.display = 'none';
-         emailjs.send('service_hlkt43g','template_mdh3rlq', {
+          emailjs.send('service_hlkt43g','template_g7nwiii', {
             from_name: document.getElementById('name').value,
             reply_to: email,
             phone: phone,
             message: document.getElementById('message').value
-          },'cj0n6fbLDl-f4swPB').then(function(){
+          }).then(function(){
             alert('Thanks! Your message has been sent.');
             document.getElementById('contact-form').reset();
           }).catch(function(error){
-            alert('There was an issue sending your message. Please try again, email us, or call us at 954 590 0378');
+            alert('There was an issue sending your message. Please try again or email us directly.');
             console.error(error);
           });
           return false;

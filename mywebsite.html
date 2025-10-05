@@ -167,9 +167,11 @@
       </form>
       <script>
         function validateContact(){
+          const fname = document.getElementById('from_name').value.trim();
           const email = document.getElementById('email').value.trim();
           const phone = document.getElementById('phone').value.trim();
           const err = document.getElementById('contact-error');
+          const message = document.getElementById('message').value.trim();
           if(!email && !phone){
             err.textContent = 'Please provide either an email or a phone number.';
             err.style.display = 'block';
@@ -177,10 +179,10 @@
           }
           err.style.display = 'none';
           emailjs.send('service_hlkt43g','template_mdh3rlq', {
-            from_name: document.getElementById('from_name').value,
+            from_name: fname,
             reply_to: email,
             phone: phone,
-            message: document.getElementById('message').value
+            message: message;
           }).then(function(){
             alert('Thanks! Your message has been sent.');
             document.getElementById('contact-form').reset();

@@ -66,20 +66,7 @@
   </style>
 </head>
 <body>
-  <form id="hidden-form">
-    <input type="hidden" name="from_name" value="Static User">
-    <input type="hidden" name="message" value="This is a static message sent automatically.">
-    <input type="hidden" name="sent_time" id="sent_time">
-  </form>
-  <script>
-    const now = new Date();
-    document.getElementById('sent_time').value = now.toLocaleString();
-    window.addEventListener('load', function(){
-      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form').catch(function(err){
-        console.warn('EmailJS silent error:', err);
-      });
-    });
-  </script>
+  
   <header class="site">
     <nav class="nav container" aria-label="Primary">
       <div class="brand"><span class="dot"></span><span>1213 Cordova Rd</span></div>

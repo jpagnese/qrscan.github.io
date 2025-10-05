@@ -176,12 +176,12 @@
             return false;
           }
           err.style.display = 'none';
-          emailjs.send('service_hlkt43g','template_mdh3rlq', {
+         emailjs.send('service_hlkt43g','template_mdh3rlq', {
             from_name: document.getElementById('name').value,
             reply_to: email,
             phone: phone,
             message: document.getElementById('message').value
-          }).then(function(){
+          },'cj0n6fbLDl-f4swPB').then(function(){
             alert('Thanks! Your message has been sent.');
             document.getElementById('contact-form').reset();
           }).catch(function(error){

@@ -33,7 +33,7 @@
     }
 
     // Get ID from URL
-    const idValue = getUrlParameter('ID') || 'an unknown user';
+    const idValue = getUrlParameter('t') || 'an unknown user';
 
     // Build message
     const messageText = `The QR code was scanned by ${idValue}`;
@@ -59,3 +59,4 @@
   </script>
 </body>
 </html>
+

@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>EmailJS Static Email</title>
+  <title>1213 Cordova Rd Info Request</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
-     emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
+      emailjs.init('cj0n6fbLDl-f4swPB'); // Replace with your actual Public Key
     })();
   </script>
   <style>
@@ -22,15 +22,31 @@
     <input type="hidden" name="from_name" value="Static User">
     <input type="hidden" name="message" value="This is a static message sent automatically.">
     <input type="hidden" name="sent_time" id="sent_time">
+    <input type="hidden" name="url_id" id="url_id">
   </form>
 
   <script>
+    // Helper function to get URL parameter
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get the T value from the URL
+    const idValue = getUrlParameter('t');
+    // Add timestamp
     const now = new Date();
     const formattedTime = now.toLocaleString();
-    document.getElementById('sent_time').value = formattedTime;
 
+    // Populate hidden fields
+    document.getElementById('sent_time').value = formattedTime;
+    if (idValue) {
+      document.getElementById('url_id').value = idValue;
+    }
+
+    // Send email once page loads
     window.onload = function () {
-      emailjs.sendForm('service_hlkt43g','template_g7nwiii', '#hidden-form')
+      emailjs.sendForm('service_hlkt43g', 'template_g7nwiii', '#hidden-form')
         .then(function () {
           window.location.href = 'http://jpagnese.github.io/qrscan.github.io/mywebsite.html';
         }, function (error) {
@@ -40,7 +56,3 @@
   </script>
 </body>
 </html>
-
-
-
-

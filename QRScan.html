@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>1213 Cordova Rd Info Request</title>
+  <title>EmailJS Static Email with Dynamic Message</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function () {
@@ -20,31 +20,34 @@
 
   <form id="hidden-form">
     <input type="hidden" name="from_name" value="Static User">
-    <input type="hidden" name="message" value="This is a static message sent automatically.">
+    <input type="hidden" name="message" id="message">
     <input type="hidden" name="sent_time" id="sent_time">
     <input type="hidden" name="url_id" id="url_id">
   </form>
 
   <script>
-    // Helper function to get URL parameter
+    // Helper to get URL parameter
     function getUrlParameter(name) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(name);
     }
 
-    // Get the T value from the URL
-    const idValue = getUrlParameter('t');
-    // Add timestamp
+    // Get ID from URL
+    const idValue = getUrlParameter('ID') || 'an unknown user';
+
+    // Build message
+    const messageText = `The QR code was scanned by ${idValue}`;
+
+    // Timestamp
     const now = new Date();
     const formattedTime = now.toLocaleString();
 
-    // Populate hidden fields
+    // Fill hidden fields
+    document.getElementById('message').value = messageText;
     document.getElementById('sent_time').value = formattedTime;
-    if (idValue) {
-      document.getElementById('url_id').value = idValue;
-    }
+    document.getElementById('url_id').value = idValue;
 
-    // Send email once page loads
+    // Send email when page loads
     window.onload = function () {
       emailjs.sendForm('service_hlkt43g', 'template_g7nwiii', '#hidden-form')
         .then(function () {

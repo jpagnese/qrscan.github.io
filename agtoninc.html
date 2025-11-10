@@ -1,0 +1,1351 @@
+Here’s a complete, ready-to-use **single-page website** for **Agton, Inc.** showcasing all those nearshore services.
+
+You can save this as `index.html` and open it in a browser (or host it on GitHub Pages, Netlify, etc.).
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agton, Inc. – Nearshore Technology & Growth Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Agton, Inc. provides nearshore software development, product management, customer operations, and digital marketing services for U.S. companies." />
+  <style>
+    :root {
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --accent-dark: #1d4ed8;
+      --bg: #0b1220;
+      --bg-soft: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #020617;
+      --border: #1f2937;
+      --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.6);
+      --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.4);
+      --transition: 200ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1d4ed8 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    /* Navigation */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      margin: 0 auto 1.5rem;
+      max-width: 1120px;
+      position: sticky;
+      top: 0.75rem;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.25), rgba(15,23,42,0.95));
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: conic-gradient(from 200deg, #22d3ee, #22c55e, #2563eb, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b1120;
+      font-weight: 800;
+      font-size: 1.2rem;
+      box-shadow: 0 0 20px rgba(59,130,246,0.7);
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 1.1rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: #f9fafb;
+      border-color: rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.6);
+    }
+
+    .btn {
+      padding: 0.55rem 1.2rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #22c55e);
+      color: #0b1120;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(148,163,184,0.3);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.9);
+      border-color: rgba(148,163,184,0.6);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 2.25rem;
+      align-items: center;
+      padding: 2rem 0 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        padding-inline: 1rem;
+      }
+      .nav {
+        padding-inline: 0.9rem;
+      }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.3rem 0.9rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #bfdbfe, #22d3ee, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta div span {
+      display: block;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 1.4rem 1.5rem;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.12), rgba(15,23,42,0.98));
+      border: 1px solid rgba(148,163,184,0.45);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .hero-kpi {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .hero-kpi-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .hero-kpi-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .hero-kpi-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .hero-kpi-pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-badge span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-diagram {
+      position: relative;
+      border-radius: 20px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.75);
+      padding: 0.8rem 0.9rem;
+      font-size: 0.68rem;
+    }
+
+    .hero-diagram-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-diagram-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .hero-diagram-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.35rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.45);
+    }
+
+    .hero-diagram-pill span:last-child {
+      font-weight: 600;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px dashed rgba(148,163,184,0.25);
+    }
+
+    .hero-orbit::before {
+      inset: 8% 6%;
+    }
+
+    .hero-orbit::after {
+      inset: 18% 16%;
+    }
+
+    .hero-orbit-dot {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22d3ee;
+      box-shadow: 0 0 12px rgba(34,211,238,0.8);
+      top: 12%;
+      right: 12%;
+    }
+
+    @media (max-width: 900px) {
+      .hero-card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* Section headings */
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 26rem;
+    }
+
+    @media (max-width: 768px) {
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.25), rgba(15,23,42,0.98));
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.15rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      margin: 0 0 0.4rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.2rem 0 0.2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .card-list li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #60a5fa;
+    }
+
+    .card-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+    }
+
+    .card-chip {
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.85);
+      color: var(--muted);
+    }
+
+    .card-corner-label {
+      position: absolute;
+      top: 0.65rem;
+      right: 0.8rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(148,163,184,0.7);
+    }
+
+    /* Two-column sections */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .pill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      color: var(--muted);
+    }
+
+    /* Timeline / steps */
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-left: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .step {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34,197,94,0.9);
+    }
+
+    .step-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0.1rem 0 0.25rem;
+    }
+
+    .step-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 26rem;
+    }
+
+    /* Contact */
+    .contact-card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(34,197,94,0.2), rgba(15,23,42,0.98));
+      border: 1px solid rgba(148,163,184,0.65);
+      padding: 1.3rem 1.35rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 1.4rem;
+      align-items: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    @media (max-width: 900px) {
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .contact-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.6rem;
+    }
+
+    .contact-body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.55rem;
+      font-size: 0.84rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.85);
+      color: #e5e7eb;
+      padding: 0.45rem 0.65rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(96,165,250,0.5);
+    }
+
+    .field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .small-print {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(31,41,55,0.9);
+      padding: 1.3rem 1.25rem 2rem;
+      max-width: 1120px;
+      margin: 0 auto;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-left">
+      <div class="logo-mark">A</div>
+      <div>
+        <div class="logo-text-main">Agton, Inc.</div>
+        <div class="logo-text-sub">Nearshore Technology Studio</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#product">Product & Design</a>
+      <a href="#ops">Customer Ops</a>
+      <a href="#process">How We Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="nav-tag">Time-zone aligned · LATAM → U.S.</div>
+      <a href="#contact">
+        <button class="btn btn-primary">
+          Book a discovery call →
+        </button>
+      </a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          NEARSHORE DELIVERY · U.S. HOURS
+        </div>
+        <h1 class="hero-title">
+          Build faster with<span> nearshore product, engineering & growth teams.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Agton, Inc. assembles high-performing nearshore squads for U.S. companies:
+          software engineers, product managers, designers, customer success, and growth
+          specialists – all in your time zone.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="#contact">
+            <button class="btn btn-primary">
+              Schedule a 30-min intro
+            </button>
+          </a>
+          <a href="#services">
+            <button class="btn btn-ghost">
+              Explore services
+            </button>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div>
+            <span>Core focus</span>
+            SaaS · B2B · EdTech · FinTech
+          </div>
+          <div>
+            <span>Engagements</span>
+            Dedicated pods · Staff augmentation · Project delivery
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-grid">
+            <div class="hero-kpi">
+              <div class="hero-kpi-label">Why nearshore with Agton</div>
+              <div class="hero-kpi-value">+30%</div>
+              <div class="hero-badge">
+                Avg. <span>runway extension</span> vs U.S.-only teams
+              </div>
+              <div class="hero-kpi-pill-row">
+                <div class="hero-kpi-pill">U.S. business hours</div>
+                <div class="hero-kpi-pill">Fluent English</div>
+                <div class="hero-kpi-pill">Product-minded talent</div>
+              </div>
+            </div>
+            <div class="hero-diagram">
+              <div class="hero-diagram-label">Delivery pods</div>
+              <div class="hero-diagram-row">
+                <div class="hero-diagram-pill">
+                  <span>Product + Design Pod</span>
+                  <span>PM · UX · Research</span>
+                </div>
+                <div class="hero-diagram-pill">
+                  <span>Engineering Pod</span>
+                  <span>Backend · Frontend · QA</span>
+                </div>
+                <div class="hero-diagram-pill">
+                  <span>Growth & Ops Pod</span>
+                  <span>CS · RevOps · Marketing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-orbit">
+            <div class="hero-orbit-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES: ENGINEERING & TECH -->
+    <section id="services" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Services</div>
+          <h2 class="section-title">Software Engineering & Technology</h2>
+        </div>
+        <p class="section-desc">
+          Nearshore engineering pods that plug into your product roadmap:
+          full-stack development, cloud, data, QA, and AI – guided by modern delivery practices.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card">
+          <div class="card-corner-label">Build</div>
+          <div class="card-tag">Custom engineering</div>
+          <h3 class="card-title">Web & Mobile Development</h3>
+          <p class="card-body">
+            Ship modern applications across web, iOS, and Android with cross-functional squads.
+          </p>
+          <ul class="card-list">
+            <li>React, Vue, Next.js, Angular</li>
+            <li>Node.js, Python, .NET, Java</li>
+            <li>iOS, Android & cross-platform</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">Feature delivery</span>
+            <span class="card-chip">MVPs</span>
+            <span class="card-chip">Legacy modernization</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-corner-label">Scale</div>
+          <div class="card-tag">Cloud & DevOps</div>
+          <h3 class="card-title">Cloud, SRE & DevOps</h3>
+          <p class="card-body">
+            Increase reliability, observability, and deployment speed in your cloud environments.
+          </p>
+          <ul class="card-list">
+            <li>AWS, Azure, GCP architectures</li>
+            <li>CI/CD pipelines & GitOps</li>
+            <li>Monitoring, logging & alerting</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">Infra as Code</span>
+            <span class="card-chip">SRE best practices</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-corner-label">Insight</div>
+          <div class="card-tag">Data & AI</div>
+          <h3 class="card-title">Data Engineering & AI</h3>
+          <p class="card-body">
+            Turn raw data into decisions with modern data stacks and applied AI.
+          </p>
+          <ul class="card-list">
+            <li>Data pipelines & warehousing</li>
+            <li>BI dashboards & analytics</li>
+            <li>ML models, LLMs & automation</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">dbt · Snowflake</span>
+            <span class="card-chip">AI copilots</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-corner-label">Quality</div>
+          <div class="card-tag">Testing</div>
+          <h3 class="card-title">QA Engineering & Automation</h3>
+          <p class="card-body">
+            Prevent regressions and ship confidently with integrated quality practices.
+          </p>
+          <ul class="card-list">
+            <li>Automated test suites</li>
+            <li>Manual & exploratory testing</li>
+            <li>Performance & load testing</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">Shift-left testing</span>
+            <span class="card-chip">Regression suites</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-corner-label">Secure</div>
+          <div class="card-tag">Security</div>
+          <h3 class="card-title">Security & Compliance Support</h3>
+          <p class="card-body">
+            Reduce risk and prepare for audits with nearshore security expertise.
+          </p>
+          <ul class="card-list">
+            <li>Vulnerability assessments</li>
+            <li>SOC 2 & ISO readiness support</li>
+            <li>Secure SDLC practices</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">AppSec</span>
+            <span class="card-chip">Risk assessments</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-corner-label">Experience</div>
+          <div class="card-tag">Product design</div>
+          <h3 class="card-title">UX & Product Design</h3>
+          <p class="card-body">
+            Create interfaces and flows that feel intuitive, elegant, and on-brand.
+          </p>
+          <ul class="card-list">
+            <li>UX research & discovery</li>
+            <li>Design systems & prototyping</li>
+            <li>Usability testing</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">Figma</span>
+            <span class="card-chip">Design sprints</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRODUCT & DESIGN STRATEGY -->
+    <section id="product" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Product leadership</div>
+          <h2 class="section-title">Product Management & Design Strategy</h2>
+        </div>
+        <p class="section-desc">
+          Go beyond “outsourced dev shops.” Agton provides product-minded leaders who think
+          in outcomes: adoption, retention, revenue – not just tickets closed.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <article class="card">
+            <div class="card-tag">Product as a Service</div>
+            <h3 class="card-title">Fractional Product Management</h3>
+            <p class="card-body">
+              Plug-in product leaders who can own a domain or support your VP of Product.
+            </p>
+            <ul class="card-list">
+              <li>Vision, strategy & roadmapping</li>
+              <li>Backlog shaping & prioritization</li>
+              <li>Discovery, validation & go-to-market</li>
+            </ul>
+            <div class="card-chip-row">
+              <span class="card-chip">OKRs & outcomes</span>
+              <span class="card-chip">MVP scoping</span>
+            </div>
+          </article>
+        </div>
+        <div>
+          <article class="card">
+            <div class="card-tag">Experiments & insights</div>
+            <h3 class="card-title">Research, A/B Testing & Analytics</h3>
+            <p class="card-body">
+              Validate decisions with data: real user feedback, rapid experimentation,
+              and clean analytics.
+            </p>
+            <ul class="card-list">
+              <li>Discovery interviews & surveys</li>
+              <li>A/B and multivariate experiments</li>
+              <li>GA4, Mixpanel, Segment instrumentation</li>
+            </ul>
+            <div class="card-chip-row">
+              <span class="card-chip">Feature flags</span>
+              <span class="card-chip">Experiment design</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER OPS & GROWTH -->
+    <section id="ops" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Customer operations & growth</div>
+          <h2 class="section-title">Customer Success, Back-Office & Digital Marketing</h2>
+        </div>
+        <p class="section-desc">
+          Build a nearshore “growth & operations” engine that covers your customers and
+          pipeline in real time, without sacrificing quality or empathy.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card">
+          <div class="card-tag">Customer success</div>
+          <h3 class="card-title">Support & Success Teams</h3>
+          <p class="card-body">
+            High-touch, empathetic support and success teams, aligned with U.S. hours.
+          </p>
+          <ul class="card-list">
+            <li>Tier 1–2 tech support</li>
+            <li>Onboarding & adoption playbooks</li>
+            <li>Renewal & expansion workflows</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">SaaS CS</span>
+            <span class="card-chip">SLAs & KPIs</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">Back office</div>
+          <h3 class="card-title">Operations & RevOps Support</h3>
+          <p class="card-body">
+            Keep your revenue engine clean and predictable with nearshore ops teams.
+          </p>
+          <ul class="card-list">
+            <li>CRM hygiene (HubSpot, Salesforce)</li>
+            <li>Billing, collections & reporting</li>
+            <li>Data entry & quality checks</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">RevOps</span>
+            <span class="card-chip">Process automation</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">Growth studio</div>
+          <h3 class="card-title">Digital Marketing & Creative</h3>
+          <p class="card-body">
+            Full-funnel growth support from paid media to content and analytics.
+          </p>
+          <ul class="card-list">
+            <li>Google, Meta & LinkedIn Ads</li>
+            <li>SEO, content & email campaigns</li>
+            <li>Landing pages, CRO & analytics</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">Campaign ops</span>
+            <span class="card-chip">CRO</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">Automation</div>
+          <h3 class="card-title">No-Code, RPA & AI Assistants</h3>
+          <p class="card-body">
+            Automate repetitive work so your core team can focus on the important problems.
+          </p>
+          <ul class="card-list">
+            <li>No-code workflows (Zapier, Make)</li>
+            <li>RPA bots for back-office processes</li>
+            <li>AI agents & internal copilots</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">Ops automation</span>
+            <span class="card-chip">Agentic AI</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">Specialized lab</div>
+          <h3 class="card-title">AI Prompt & Data Annotation Lab</h3>
+          <p class="card-body">
+            Structured teams to tune prompts, label data, and evaluate AI-driven products.
+          </p>
+          <ul class="card-list">
+            <li>Prompt libraries & templates</li>
+            <li>Data labeling & QA</li>
+            <li>Guardrails & evaluation</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">AI safety</span>
+            <span class="card-chip">Human-in-the-loop</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-tag">EdTech & Training</div>
+          <h3 class="card-title">Learning & Enablement Studio</h3>
+          <p class="card-body">
+            Content and tools that educate your customers and internal teams.
+          </p>
+          <ul class="card-list">
+            <li>Onboarding academies & help centers</li>
+            <li>Interactive tutorials & videos</li>
+            <li>Internal enablement assets</li>
+          </ul>
+          <div class="card-chip-row">
+            <span class="card-chip">LMS integration</span>
+            <span class="card-chip">Knowledge bases</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK -->
+    <section id="process" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Engagement</div>
+          <h2 class="section-title">How we work with U.S. companies</h2>
+        </div>
+        <p class="section-desc">
+          From one specialist to a full squad, Agton is designed to integrate into your
+          operating rhythm with minimal friction and maximum accountability.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3 style="margin: 0 0 0.6rem; font-size: 1rem;">Engagement models</h3>
+          <ul class="pill-list">
+            <li class="pill">Dedicated nearshore squads</li>
+            <li class="pill">Staff augmentation</li>
+            <li class="pill">Fixed-scope projects</li>
+            <li class="pill">Fractional leadership (CPO/VP Product)</li>
+            <li class="pill">Labs & prototypes</li>
+          </ul>
+
+          <div style="margin-top: 1.1rem;">
+            <h3 style="margin: 0 0 0.45rem; font-size: 0.98rem;">Operating principles</h3>
+            <p style="font-size: 0.86rem; color: var(--muted); max-width: 28rem;">
+              We mirror your working style – Slack, Jira, Notion, Asana – and run agile
+              ceremonies in U.S. time zones, with clear ownership of outcomes and metrics.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="margin: 0 0 0.6rem; font-size: 1rem;">Onboarding process</h3>
+          <ol class="steps">
+            <li class="step">
+              <div class="step-label">Step 1 · Discovery</div>
+              <div class="step-title">Understand your goals & constraints</div>
+              <p class="step-body">
+                We map your objectives, tech stack, team structure, and success metrics
+                in a focused discovery call.
+              </p>
+            </li>
+            <li class="step">
+              <div class="step-label">Step 2 · Squad design</div>
+              <div class="step-title">Right-size the nearshore team</div>
+              <p class="step-body">
+                We propose roles, seniority mix, and engagement model (squad, staff
+                augmentation, or project) aligned with your budget and roadmap.
+              </p>
+            </li>
+            <li class="step">
+              <div class="step-label">Step 3 · Launch</div>
+              <div class="step-title">Integrate & start shipping</div>
+              <p class="step-body">
+                We align on ceremonies, tooling, SLAs, and KPIs – and start delivering
+                value in the first sprint.
+              </p>
+            </li>
+            <li class="step">
+              <div class="step-label">Step 4 · Optimize</div>
+              <div class="step-title">Continuous improvement & scaling</div>
+              <p class="step-body">
+                Regular retros and business reviews ensure we tune the team, process,
+                and scope as you grow.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGIONS / INDUSTRIES -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Fit</div>
+          <h2 class="section-title">Who Agton is ideal for</h2>
+        </div>
+        <p class="section-desc">
+          We primarily partner with U.S.-based founders, PMs, and leaders who need to
+          extend their capacity without creating management drag.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <article class="card">
+            <div class="card-tag">Industries</div>
+            <h3 class="card-title">Core verticals</h3>
+            <ul class="card-list">
+              <li>SaaS & B2B software</li>
+              <li>EdTech & learning platforms</li>
+              <li>FinTech & financial services</li>
+              <li>Marketplaces & e-commerce</li>
+              <li>Logistics, supply chain & ops tech</li>
+            </ul>
+          </article>
+        </div>
+        <div>
+          <article class="card">
+            <div class="card-tag">Nearshore hubs</div>
+            <h3 class="card-title">Time-zone aligned talent</h3>
+            <p class="card-body">
+              Agton’s teams operate from Latin American and nearshore hubs aligned with
+              U.S. Eastern and Central time zones, enabling real-time collaboration.
+            </p>
+            <ul class="card-list">
+              <li>Strong English communication</li>
+              <li>Remote-native collaboration culture</li>
+              <li>U.S.-friendly legal & IP frameworks</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Contact</div>
+          <h2 class="section-title">Let’s explore if Agton is a fit</h2>
+        </div>
+        <p class="section-desc">
+          Share a bit about your challenges and we’ll propose a nearshore squad
+          or engagement model tailored to your goals – no obligation.
+        </p>
+      </div>
+
+      <div class="contact-card">
+        <div>
+          <h3 class="contact-title">Tell us about your roadmap</h3>
+          <p class="contact-body">
+            Whether you need a fractional product leader, a dev squad, or a full
+            growth & ops pod, we’ll respond with a concrete proposal and suggested
+            next steps.
+          </p>
+          <div class="contact-meta">
+            Prefer email? Reach us at
+            <a href="mailto:hello@agton.inc">hello@agton.inc</a>.
+            <br />
+            Typical response time: within one U.S. business day.
+          </div>
+        </div>
+
+        <!-- Static form (you can wire this up to EmailJS, a backend, or a form provider) -->
+        <form class="contact-form">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input id="company" name="company" placeholder="Company name" />
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input id="email" name="email" placeholder="you@company.com" type="email" />
+          </div>
+          <div class="field">
+            <label for="need">What are you looking for?</label>
+            <select id="need" name="need">
+              <option value="">Select an option</option>
+              <option>Engineering squad</option>
+              <option>Product management & design</option>
+              <option>Customer success / support</option>
+              <option>Growth & marketing support</option>
+              <option>AI / automation lab</option>
+              <option>Other / not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Context (optional)</label>
+            <textarea id="message" name="message" placeholder="Briefly describe your product, team, and challenges."></textarea>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <button type="submit" class="btn btn-primary">
+              Send inquiry
+            </button>
+            <div class="small-print">
+              This is a static demo form. Connect it to your preferred form service
+              (e.g., EmailJS, Netlify Forms, or a custom backend) to receive submissions.
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Agton, Inc. All rights reserved.</div>
+    <div class="footer-links">
+      <span>Nearshore technology & growth services for U.S. companies.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Update footer year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

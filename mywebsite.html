@@ -1,4 +1,10 @@
+Here’s your updated file with an **Open House on 11/14/2025 from 12–2 PM** added:
 
+* A new **nav pill** for quick jump: `Open House`
+* A dedicated **Open House section** styled with your existing `.section` + `.card` + `.lead` classes
+* Placed **after the hero** (where pricing lives) and before “Words from the Current Owners”
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +85,7 @@
   <nav class="nav container" aria-label="Primary">
     <div class="brand"><span class="dot"></span><span>1213 Cordova Rd</span></div>
     <div class="navlinks">
+      <a class="pill" href="#open-house">Open House</a>
       <a class="pill" href="#gallery-1">Indoor</a>
       <a class="pill" href="#gallery-2">Outdoor</a>
       <a class="pill" href="#gallery-3">Bedrooms</a>
@@ -95,6 +102,22 @@
       <span class="tag"><a href="https://app.bidmax.com/property/1213-Cordova-Rd-Fort-Lauderdale-FL-333162107/YFpxMjjMZe" title="BidMax Properties">our BidMax Properties Page</a></span>
       <h1>$1,399,500</h1>
       <h1>1213 Cordova Rd, Fort Lauderdale, FL</h1>
+    </div>
+  </section>
+
+  <!-- Open House Section -->
+  <section class="section" id="open-house">
+    <div class="container card">
+      <h2>Open House — Friday, November 14, 2025</h2>
+      <p class="lead"><strong>12:00 PM – 2:00 PM</strong></p>
+      <p class="lead">
+        Join us for an in-person tour of 1213 Cordova Rd. Explore the indoor–outdoor living areas,
+        pool, and Argentine-style grill, and ask questions directly with the owner.
+      </p>
+      <p class="lead">
+        Light refreshments will be served. If you prefer a private showing at a different time,
+        please reach out via the contact form below or call 954&nbsp;590&nbsp;0378.
+      </p>
     </div>
   </section>
 
@@ -284,3 +307,6 @@
   </script>
 </body>
 </html>
+```
+
+If you’d like, I can also add a tiny “RSVP for Open House” pre-filled message in the contact textarea when someone clicks a special link/button.

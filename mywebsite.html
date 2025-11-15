@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8XZD02KDS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y8XZD02KDS');
+</script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1213 Cordova Rd</title>
@@ -255,50 +265,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
-  <script>
-    // QR tracking: if URL has ?ID=..., send hidden EmailJS form once
-    document.addEventListener('DOMContentLoaded', function () {
-      const params  = new URLSearchParams(window.location.search);
-      const idValue = params.get('ID');
 
-      if (!idValue) {
-        return; // normal visit, no QR tracking
-      }
-
-      const hiddenForm = document.getElementById('hidden-form');
-      const msgInput   = document.getElementById('qr_message');
-      const timeInput  = document.getElementById('sent_time');
-      const idInput    = document.getElementById('url_id');
-
-      if (!hiddenForm || !msgInput || !timeInput || !idInput) {
-        console.warn('Hidden QR form not found, skipping QR email.');
-        return;
-      }
-
-      const now = new Date();
-      const formattedTime = now.toLocaleString();
-
-      msgInput.value  = `The QRCode was scanned by ${idValue}`;
-      timeInput.value = formattedTime;
-      idInput.value   = idValue;
-
-      if (!window.emailjs || !emailjs.sendForm) {
-        console.warn('EmailJS SDK missing, cannot send QR notification.');
-        return;
-      }
-
-      emailjs.sendForm('service_hlkt43g', 'template_g7nwiii', '#hidden-form')
-        .then(function () {
-          console.log('QR scan notification sent.');
-          // If you DON'T want to redirect, comment out the next line:
-          window.location.href = 'https://jpagnese.github.io/qrscan.github.io/mywebsite.html';
-        })
-        .catch(function (error) {
-          console.error('QR scan email failed:', error);
-          // Optional: still redirect even on error
-          window.location.href = 'https://jpagnese.github.io/qrscan.github.io/mywebsite.html';
-        });
-    });
-  </script>
 </body>
 </html>
